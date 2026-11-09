@@ -1,0 +1,420 @@
+@import "tailwindcss";
+@import "@fontsource/outfit/latin-400.css";
+@import "@fontsource/outfit/latin-500.css";
+@import "@fontsource/outfit/latin-600.css";
+@import "@fontsource/outfit/latin-700.css";
+@import "@fontsource/barlow-condensed/latin-500.css";
+@import "@fontsource/barlow-condensed/latin-600.css";
+@import "@fontsource/barlow-condensed/latin-700.css";
+
+@theme {
+  --font-display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --font-sans: "Outfit", system-ui, sans-serif;
+
+  --color-navy-950: #07111f;
+  --color-navy-900: #0c1b33;
+  --color-navy-800: #163056;
+  --color-ink: #f6f3ec;
+  --color-gold: #e3b341;
+  --color-gold-ink: #3d2c06;
+  --color-silver: #d5dde6;
+  --color-bronze: #c4844a;
+  --color-accent: #e23d3d;
+  --color-field: #fffcf7;
+  --color-line: #2a446e;
+
+  --radius-board: 1rem;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    font-family: var(--font-sans);
+    background: var(--color-navy-950);
+    color: var(--color-ink);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}
+
+.press {
+  transition: scale 150ms ease-out;
+}
+
+.press:active:not(:disabled) {
+  scale: 0.96;
+}
+
+.score-shell {
+  position: relative;
+  min-height: 100dvh;
+  background: var(--color-navy-950);
+  color: var(--color-ink);
+}
+
+.score-shell.is-fs {
+  height: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.bg-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.score-shade {
+  display: none;
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-navy-950) 82%, transparent);
+}
+
+.score-shell.has-photo .score-shade {
+  display: block;
+}
+
+.score-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+  padding: 0.75rem 0.75rem 1rem;
+}
+
+.score-shell.is-fs .score-content {
+  height: 100%;
+  min-height: 0;
+  padding-bottom: 0.4rem;
+}
+
+.board-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+}
+
+.score-shell.is-fs .board-title {
+  font-size: clamp(1.4rem, 2.4vw, 2.2rem);
+}
+
+.score-shell.is-fs .fs-hide {
+  display: none;
+}
+
+.logo-slot {
+  height: 3.25rem;
+  width: 3.25rem;
+}
+
+@media (min-width: 768px) {
+  .logo-slot {
+    height: 4rem;
+    width: 4rem;
+  }
+
+  .score-content {
+    padding: 1rem 1.5rem 1.25rem;
+  }
+}
+
+.score-shell.is-fs .logo-slot {
+  height: 2.6rem;
+  width: 2.6rem;
+}
+
+.stand-scroll {
+  margin-top: 0.75rem;
+}
+
+.score-shell.is-fs .stand-scroll {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 0.35rem;
+  overflow: auto;
+}
+
+.stand-head,
+.stand-row {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr) repeat(3, 4.6rem) 4.2rem;
+  align-items: center;
+  column-gap: 0.35rem;
+  padding-inline: 0.55rem;
+}
+
+.stand-head {
+  min-height: 2.2rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-gold) 70%, transparent);
+  color: color-mix(in srgb, var(--color-ink) 68%, transparent);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stand-list .stand-row {
+  min-height: 3.15rem;
+}
+
+.stand-row + .stand-row {
+  box-shadow: inset 0 1px 0 color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.stand-list .stand-row:nth-child(even):not(.podium-1):not(.podium-2):not(.podium-3) {
+  background: color-mix(in srgb, var(--color-ink) 4%, transparent);
+}
+
+.podium-1 {
+  background: color-mix(in srgb, var(--color-gold) 16%, transparent);
+  box-shadow:
+    inset 4px 0 0 var(--color-gold),
+    inset 0 1px 0 color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.podium-2 {
+  background: color-mix(in srgb, var(--color-silver) 10%, transparent);
+  box-shadow:
+    inset 4px 0 0 var(--color-silver),
+    inset 0 1px 0 color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.podium-3 {
+  background: color-mix(in srgb, var(--color-bronze) 16%, transparent);
+  box-shadow:
+    inset 4px 0 0 var(--color-bronze),
+    inset 0 1px 0 color-mix(in srgb, var(--color-ink) 12%, transparent);
+}
+
+.score-shell.is-fs .stand-list {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.score-shell.is-fs .stand-row {
+  flex: 1 1 auto;
+  min-height: 1.65rem;
+  padding-block: 0;
+}
+
+.team-name {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.score-shell.is-fs .team-name {
+  overflow: hidden;
+  font-size: 0.95rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.medal-num {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .stand-head,
+  .stand-row {
+    grid-template-columns: 6.5rem minmax(0, 1fr) repeat(3, 6.25rem) 5.5rem;
+    column-gap: 0.5rem;
+    padding-inline: 0.75rem;
+  }
+
+  .stand-list .stand-row {
+    min-height: 3.35rem;
+  }
+
+  .medal-num {
+    font-size: 2rem;
+  }
+
+  .stand-head {
+    font-size: 0.75rem;
+  }
+}
+
+.num-gold { color: var(--color-gold); }
+.num-silver { color: var(--color-silver); }
+.num-bronze { color: var(--color-bronze); }
+.num-total { color: var(--color-ink); }
+
+.medal {
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 999px;
+  box-shadow:
+    inset 0 -2px 0 rgb(0 0 0 / 28%),
+    0 0 0 1px rgb(255 255 255 / 28%);
+}
+
+.medal-gold {
+  background: radial-gradient(circle at 35% 30%, #ffe7a3, var(--color-gold) 46%, #a97818);
+}
+
+.medal-silver {
+  background: radial-gradient(circle at 35% 30%, #ffffff, var(--color-silver) 48%, #8b97a6);
+}
+
+.medal-bronze {
+  background: radial-gradient(circle at 35% 30%, #ffd7b0, var(--color-bronze) 48%, #7a4a22);
+}
+
+.head-medal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.live-dot {
+  animation: live-pulse 1.4s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+@keyframes sheen {
+  0% { background-color: transparent; }
+  35% { background-color: color-mix(in srgb, var(--color-gold) 32%, transparent); }
+  100% { background-color: transparent; }
+}
+
+.row-sheen {
+  animation: sheen 1s ease;
+}
+
+@keyframes tick {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.16); }
+  100% { transform: scale(1); }
+}
+
+.tick {
+  display: inline-block;
+  animation: tick 320ms ease;
+}
+
+.move-up,
+.move-down {
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.move-up { color: var(--color-gold); }
+.move-down { color: var(--color-accent); }
+
+[data-sonner-toaster] [data-sonner-toast] {
+  background: var(--color-navy-900) !important;
+  color: var(--color-ink) !important;
+  border: 1px solid var(--color-gold) !important;
+  font-family: var(--font-sans) !important;
+}
+
+@media (max-width: 720px) {
+  .stand-head,
+  .stand-row {
+    grid-template-columns: 3.4rem minmax(0, 1fr) repeat(4, 2.55rem);
+    column-gap: 0.15rem;
+    padding-inline: 0.25rem;
+  }
+
+  .medal-num {
+    font-size: 1.2rem;
+  }
+
+  .head-word {
+    display: none;
+  }
+
+  .move-up,
+  .move-down {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .live-dot,
+  .row-sheen,
+  .tick,
+  .press {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .score-shell,
+  .score-content {
+    min-height: 0 !important;
+    background: white !important;
+    color: #142033 !important;
+  }
+
+  .bg-layer,
+  .score-shade {
+    display: none !important;
+  }
+
+  .stand-head,
+  .stand-row,
+  .team-name,
+  .board-title {
+    color: #142033 !important;
+  }
+
+  .num-gold,
+  .num-silver,
+  .num-bronze,
+  .num-total {
+    color: #142033 !important;
+  }
+
+  .podium-1,
+  .podium-2,
+  .podium-3,
+  .stand-row {
+    background: white !important;
+    box-shadow: none !important;
+  }
+
+  .stand-row {
+    break-inside: avoid;
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "LIVE MEDAL STANDING",
+      "hasCanvas": false,
+      "bodyTextLen": 1523,
+      "bodyTextHash": "764162404157f56a64564d4b52c5b2c236cb2560b46406489968307ce6fe518c",
+      "bodyTextPrefix": "POR 2026 BJG KEC GRS KAB LIVE MEDAL STANDING POR (PEKAN OLAHRAGA",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "LIVE MEDAL STANDING",
+      "hasCanvas": false,
+      "bodyTextLen": 1485,
+      "bodyTextHash": "3d6e8b0c2a94031f6818f2b4ea9b84fde5ce042b4a2970dc21ed8b5c7298d33b",
+      "bodyTextPrefix": "POR 2026 BJG KEC GRS KAB LIVE MEDAL STANDING POR (PEKAN OLAHRAGA",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
